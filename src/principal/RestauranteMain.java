@@ -8,16 +8,30 @@ public class RestauranteMain {
 		// TODO Auto-generated method stub
 		 Scanner sc = new Scanner(System.in);
 	        int opcion;
+	        
+	        Partida partida = new Partida();
 
 	        do {
-	            mostrarMenu();
+	            menuInicio();
 	            System.out.print("👉 Elige una opción: ");
 	            opcion = sc.nextInt();
 
 	            switch (opcion) {
 	                case 1:
-	                    System.out.println("\n🧑‍🍳 Atendiendo a un nuevo cliente...\n");
-	                    break;
+	                    menuTienda();
+	                   opcion = sc.nextInt();
+	                   Lechuga l = new Lechuga();
+	                   
+	                   partida.ingredientesDisponibles.add(l,1);
+	                   
+	                   switch(opcion) {
+	                   
+	                   case 1: System.out.println("");
+	                   
+	                   
+	                   
+	                   
+	                   }
 	                case 2:
 	                    System.out.println("\n⭐ Mostrando puntuación del restaurante...\n");
 	                    break;
@@ -33,13 +47,35 @@ public class RestauranteMain {
 	        sc.close();
 	    }
 
-	    public static void mostrarMenu() {
-	        System.out.println("=======================================");
-	        System.out.println(" 🍽️   BIENVENIDO A JAVA RESTAURANT   🍽️");
-	        System.out.println("=======================================");
-	        System.out.println(" 1️⃣  Atender nuevo cliente");
-	        System.out.println(" 2️⃣  Ver puntuación del restaurante");
-	        System.out.println(" 3️⃣  Salir");
-	        System.out.println("=======================================");
+	    public static void menuInicio() {
+	    	
+	    	
+	    	System.out.println("====================================");
+	    	System.out.println("         BIENVENIDO AL RESTAURANTE");
+	    	System.out.println("====================================");
+	    	System.out.println();
+	    	System.out.println("1 - Comprar ingredientes");
+	    	System.out.println("2 - Mejorar ingredientes/equipo");
+	    	System.out.println("3 - Abrir restaurante");
+	    	System.out.println("4 - Salir");
+	    	System.out.println();
+	    	System.out.println("====================================");
+	    	System.out.print("Elige una opción: ");
+
+	    }
+	    
+	    public static void menuTienda() {
+	    	System.out.println("====================================");
+	    	System.out.println("           TIENDA DEL RESTAURANTE");
+	    	System.out.println("====================================");
+	    	System.out.println();
+	    	System.out.println("1 - Comprar Lechuga");
+	    	System.out.println("2 - Comprar Carne");
+	    	System.out.println("3 - Comprar Pan");
+	    	System.out.println("4 - Volver al menú principal");
+	    	System.out.println();
+	    	System.out.println("====================================");
+	    	System.out.print("Elige una opción: ");
+
 	    }
 	}

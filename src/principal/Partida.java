@@ -8,8 +8,25 @@ public class Partida {
 	ArrayList<Ingrediente> ingredientesDisponibles;
 	int puntuacion;
 	
-	static int clietesAtendidos;
+	static int clientesAtendidos;
 	static int puntuacionMaxima;
 	
+	public void atenderCliente() {
+		
+		String pedido = "";
+		Cliente c = null;
+		c = new Cliente("Cliente" + clientesAtendidos, pedido);
+		c.hacerPedido(pedido);
+		
+		
+	}
+	
+	public void prepararPedido(Cliente c) {
+		
+		System.out.println(c.getPedido());
+		
+		
+		
+	}
 	
 }
