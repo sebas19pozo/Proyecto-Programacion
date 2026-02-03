@@ -9,8 +9,17 @@ public class Lechuga extends Ingrediente{
 	
 	
 	
-	//Metodo de lavar
+
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	//Metodo de lavar
 	public boolean lavar(boolean preparado) {
 		
 		preparado = true;

@@ -17,8 +17,37 @@ public class Ingrediente {
 	
 	
 	
+	
 	//Metodo Preparar
 	
+	public boolean isPreparado() {
+		return preparado;
+	}
+
+
+
+
+	public void setPreparado(boolean preparado) {
+		this.preparado = preparado;
+	}
+
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+
 	protected boolean preparar() {
 		
 		return true;
