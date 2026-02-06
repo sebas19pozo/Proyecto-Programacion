@@ -6,9 +6,9 @@ public class Inventario {
 
 	ArrayList<Ingrediente> inventario = new ArrayList<>();
 	double dinero;
-	public Inventario(ArrayList<Ingrediente> inventario, double dinero) {
+	public Inventario() {
 		this.inventario = inventario;
-		this.dinero = dinero;
+		this.dinero = dinero;//igual se puede quitar no hace nada en el inventario
 	}
 	
 	
@@ -35,5 +35,19 @@ public class Inventario {
 		return false;
 		
 	}
+
+
+
+	public ArrayList<Ingrediente> getInventario() {
+		return inventario;
+	}
+
+
+
+	public void setInventario(ArrayList<Ingrediente> inventario) {
+		this.inventario = inventario;
+	}
+	
+	
 	
 }
