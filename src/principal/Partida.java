@@ -1,7 +1,5 @@
 package principal;
 
-import java.util.ArrayList;
-
 public class Partida {
 
 	Cliente cliente;
@@ -20,44 +18,40 @@ public class Partida {
 
 	
 	
-	
-	
-	public void atenderCliente() {
+
+	public String atenderCliente() {
 		
-		String pedido = "";
-		Cliente c = null;
-		c = new Cliente("Cliente" + clientesAtendidos, pedido);
-		c.hacerPedido();
+		cliente = new Cliente("Cliente" + clientesAtendidos, "");
+		cliente.hacerPedido();
+		clientesAtendidos++;
 		
+		System.out.println(cliente.getNombre()+" Ha pedido "+cliente.getPedido());
+		return cliente.getPedido();
 		
 	}
 	
 	
 	public boolean ingredienteLavadoC(Ingrediente ingrediente) {
-		if(ingrediente.isPreparado()) {
-			return true;
-		}
-		return false;
+		
+		return ingrediente.isPreparado();
 	}
 	
 	
-	public boolean prepararEnsalada(Lechuga lechuga, Cliente c) {
-			String pedido="";
+	public boolean prepararEnsalada(Lechuga lechuga) {
 			
-			if(ingredienteLavadoC(lechuga)) {
-				pedido="Enselada";
-			}else {
-				pedido="No puedes usar un ingrediente sin preparar";
-			}
-			
-			
-			
-			if (c.getPedido().equals(pedido)) {
+			if(ingredienteLavadoC(lechuga)==false) {
 				
+				System.out.println("No puedes usar un ingrediente sin preparar");
+				return false;
+			}
+		
+			if (cliente.getPedido().equals("Ensalada")) {
 				
 				return true ;
 			}
 			return false;
 		}
+	
+	
 	
 }
