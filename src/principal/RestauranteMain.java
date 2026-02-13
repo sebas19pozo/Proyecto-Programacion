@@ -85,7 +85,6 @@ public class RestauranteMain {
 	                                 }
 	                             }
 	                	
-	                	//HAY QUE HACER LO MISMO PARA HAMBURGUESA, yo vería si es mas facil hacerlo con la hamburguesa en stock sin necesidad de tener que hacerlo con ingredientes sueltos
 	                	
 	                	
 	                	System.out.println("\n👋 Cerrando el restaurante... ¡Hasta mañana!\n");

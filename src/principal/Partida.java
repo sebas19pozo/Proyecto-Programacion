@@ -1,7 +1,5 @@
 package principal;
 
-import java.util.ArrayList;
-
 public class Partida {
 
 	Cliente cliente;
@@ -27,7 +25,6 @@ public class Partida {
 		c = new Cliente("Cliente" + clientesAtendidos, pedido);
 		c.hacerPedido();
 		
-		
 	}
 	
 	
@@ -45,7 +42,7 @@ public class Partida {
 	
 	public boolean prepararEnsalada(Lechuga lechuga, Cliente c) {
 			String pedido="";
-			
+			//comprobamos si el ingrediente está lavado
 			if(ingredienteLavadoC(lechuga)) {
 				pedido="Ensalada";
 			}else {
@@ -60,25 +57,34 @@ public class Partida {
 			}
 			return false;
 		}
-	
-	public boolean prepararHamburgesa(Lechuga lechuga, Cliente c) {//He añadido esto porque el cliente te puede pedir una hamburgesa. 
-																	//Tengo dudas porque creo que igual es más fácil hacer que la hamburguesa esta ya preparada en vez de una clase pan y otra carne.
-																	//Igual es más fácil directamente tener las clases con la comida hecha y sus métodos sea
-		String pedido="";
-		
-		if(ingredienteLavadoC(lechuga)) {
-			pedido="Ensalada";
-		}else {
-			pedido="No puedes usar un ingrediente sin preparar";
-		}
-		
-		
-		if (c.getPedido().equals(pedido)) {
-			
-			
-			return true ;
-		}
-		return false;
+
+			public boolean prepararHamburguesa(Lechuga lechuga, Carne carne, Pan pan, Cliente c) {
+			    String pedido = "";
+
+			    // Verificamos si la lechuga está lavada
+			    if (ingredienteLavadoC(lechuga)) {
+			        pedido = "Hamburguesa"; 
+			    } else {
+			        pedido = "No puedes usar un ingrediente sin preparar";
+			    }
+
+			    // Verificamos si la carne está cocinada
+			    if (!carne.isPreparado()) {
+			        pedido = "No puedes usar un ingrediente sin preparar";
+			    }
+
+			    // Verificamos si el pan está tostado
+			    if (!pan.isPreparado()) {
+			        pedido = "No puedes usar un ingrediente sin preparar";
+			    }
+
+			    // Comprobamos si el pedido del cliente coincide con los ingredientes preparados
+			    if (c.getPedido().equals("Hamburguesa") && pedido.equals("Hamburguesa")) {
+			        return true; // Todo listo, hamburguesa preparada
+			    }
+
+			    return false; // Algún ingrediente no estaba preparado
+
 	}
 	
 	public void incrementarPuntuacion(int puntos) {

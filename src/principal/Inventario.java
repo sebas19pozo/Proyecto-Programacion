@@ -5,10 +5,9 @@ import java.util.ArrayList;
 public class Inventario {
 
 	ArrayList<Ingrediente> inventario = new ArrayList<>();
-	double dinero;
+	
 	public Inventario() {
-		this.inventario = inventario;
-		this.dinero = dinero;//igual se puede quitar no hace nada en el inventario
+	    this.inventario = new ArrayList<>();
 	}
 	
 	
