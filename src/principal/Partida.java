@@ -19,7 +19,7 @@ public class Partida {
 	}
 
 
-	
+	// Método para atender al cliente
 	public void atenderCliente() {
 		
 		String pedido = "";
@@ -41,7 +41,7 @@ public class Partida {
 	public Inventario getInventario() {
 	    return inventario;
 	}
-
+  
 	
 	public boolean prepararEnsalada(Lechuga lechuga, Cliente c) {
 			String pedido="";
@@ -80,5 +80,10 @@ public class Partida {
 		}
 		return false;
 	}
+	
+	public void incrementarPuntuacion(int puntos) {
+	    this.puntuacion += puntos;
+	}
+
 	
 }

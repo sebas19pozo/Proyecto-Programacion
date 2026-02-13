@@ -3,7 +3,6 @@ package principal;
 import java.util.Scanner;
 
 public class RestauranteMain {
-//NO SE ATIENDEN A LOS CLIENTES
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -46,6 +45,8 @@ public class RestauranteMain {
                        default:
                            System.out.println("❌ Opción inválida en tienda, intenta de nuevo.");
                    }
+	                   //AQUÍ NO SE HACÍAS
+	                   
 //	                   Lechuga l = new Lechuga();
 //	                  // partida.ingredientesDisponibles.add(l,1);
 //	                   partida.getInventario().agregarIngrediente(l, puntuacionInicial);
@@ -55,10 +56,11 @@ public class RestauranteMain {
 //	                       
 //	                   }
 	                case 2:
-	                    System.out.println("\n⭐ Mostrando puntuación del restaurante...\n");
+	                	 System.out.println("\n⭐ Mostrando puntuación máxima del restaurante...\n");
+	                	 System.out.println("🏆 Puntuación máxima alcanzada: " + Partida.puntuacionMaxima + " puntos\n");
+	                	    
 	                    break;
 	                case 3:
-	                	//HAY QUE MIRAR COMO HACEMOS PARA ATENDER AL CLIENTE
 	                    
 	                	cliente.hacerPedido();
 	                	partida.clientesAtendidos++;
@@ -88,6 +90,7 @@ public class RestauranteMain {
 	                	
 	                	System.out.println("\n👋 Cerrando el restaurante... ¡Hasta mañana!\n");
 	                    break;
+	                	}
 	                default:
 	                    System.out.println("\n❌ Opción no válida, intenta otra vez.\n");
 	            }
