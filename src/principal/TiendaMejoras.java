@@ -70,4 +70,4 @@ public class TiendaMejoras {
     public int getNivelLechuga() { return nivelLechuga; }
     public int getNivelCarne() { return nivelCarne; }
     public int getNivelPan() { return nivelPan; }
-}
+}//

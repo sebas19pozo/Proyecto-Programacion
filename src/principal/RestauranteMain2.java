@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class RestauranteMain2 {
 
-    // Método para mostrar inventario de manera clara
+    // Método para mostrar inventario de manera claraa
     public static void mostrarInventario(Inventario inventario) {
         System.out.println("\n--- Inventario ---");
         int lech = 0, carne = 0, pan = 0;
