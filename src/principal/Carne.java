@@ -4,7 +4,7 @@ public class Carne extends Ingrediente{
 
 	public Carne(String nombre, boolean preparado, int calidad) {
 		super(nombre, preparado, calidad);
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	
