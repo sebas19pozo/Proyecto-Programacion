@@ -107,42 +107,50 @@ public class RestauranteMain2 {
                             break;
 
                         case 4:
+                    
                             boolean sePuedeServir = true;
+
+                            // --- Preparar ensalada si está en el pedido ---
                             if (pedido.contains("Ensalada")) {
-                                sePuedeServir = false;
+                                boolean ensaladaLista = false;
                                 for (Ingrediente ing : inventario.inventario) {
-                                    if (ing instanceof Lechuga && ing.isPreparado()) {
-                                        inventario.consumirIngrediente(ing);
-                                        sePuedeServir = true;
-                                        break;
+                                    if (ing instanceof Lechuga) {
+                                        ensaladaLista = partida.prepararEnsalada((Lechuga) ing);
+                                        if (ensaladaLista) break; // consumimos solo la lechuga necesaria
                                     }
                                 }
-                                if (!sePuedeServir) System.out.println("No tienes lechuga lista.");
-                            }
-                            if (pedido.contains("Hamburguesa")) {
-                                boolean carneListo = false, panListo = false;
-                                for (Ingrediente ing : inventario.inventario) {
-                                    if (ing instanceof Carne && ing.isPreparado()) carneListo = true;
-                                    if (ing instanceof Pan && ing.isPreparado()) panListo = true;
+                                if (!ensaladaLista) {
+                                    System.out.println("No tienes lechuga lista.");
+                                    sePuedeServir = false;
                                 }
-                                if (!carneListo || !panListo) {
+                            }
+
+                            // --- Preparar hamburguesa si está en el pedido ---
+                            if (pedido.contains("Hamburguesa")) {
+                                Carne carneLista = null;
+                                Pan panListo = null;
+
+                                // Buscar carne y pan listos
+                                for (Ingrediente ing : inventario.inventario) {
+                                    if (ing instanceof Carne && ing.isPreparado() && carneLista == null) {
+                                        carneLista = (Carne) ing;
+                                    }
+                                    if (ing instanceof Pan && ing.isPreparado() && panListo == null) {
+                                        panListo = (Pan) ing;
+                                    }
+                                    if (carneLista != null && panListo != null) break;
+                                }
+
+                                // Llamar a prepararHamburguesa solo si ambos están listos
+                                if (carneLista != null && panListo != null) {
+                                    partida.prepararHamburguesa(carneLista, panListo); // aquí se consumen carne y pan
+                                } else {
                                     System.out.println("Te falta carne o pan para la hamburguesa.");
                                     sePuedeServir = false;
-                                } else {
-                                    for (Ingrediente ing : inventario.inventario) {
-                                        if (ing instanceof Carne && ing.isPreparado()) {
-                                            inventario.consumirIngrediente(ing);
-                                            break;
-                                        }
-                                    }
-                                    for (Ingrediente ing : inventario.inventario) {
-                                        if (ing instanceof Pan && ing.isPreparado()) {
-                                            inventario.consumirIngrediente(ing);
-                                            break;
-                                        }
-                                    }
                                 }
                             }
+
+                            // --- Cobrar al cliente si todo está listo ---
                             if (sePuedeServir) {
                                 double pago = 10;
                                 if (pedido.contains("Ensalada")) pago *= tienda.getMultiplicadorLechuga();
@@ -150,10 +158,8 @@ public class RestauranteMain2 {
                                 inventario.dinero += pago;
                                 System.out.println("¡Pedido completado! Ganaste: " + pago + " €.");
                                 partida.puntuacion++;
-                                pedidoCompletado = true;
                             }
                             break;
-
                         case 5:
                             boolean comprando = true;
                             while (comprando) {

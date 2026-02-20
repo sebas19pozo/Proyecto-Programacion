@@ -41,17 +41,36 @@ public class Partida {
 			
 			if(ingredienteLavadoC(lechuga)==false) {
 				
-				System.out.println("No puedes usar un ingrediente sin preparar");
+				System.out.println("No puedes usar una lechuga sin lavar");
 				return false;
 			}
 		
-			if (cliente.getPedido().equals("Ensalada")) {
-				
+			if (cliente.getPedido().contains("Ensalada")) {
+				inventario.consumirIngrediente(lechuga);
 				return true ;
 			}
 			return false;
 		}
 	
+	public boolean prepararHamburguesa(Carne carne, Pan pan) {
+		
+		if(ingredienteLavadoC(carne)==false) {
+			
+			System.out.println("No puedes usar una carne cruda");
+			return false;
+		}else if(ingredienteLavadoC(pan)==false) {
+			System.out.println("No puedes usar pan sin tostarr");
+			return false;
+		}
+		
+		if (cliente.getPedido().contains("Hamburguesa")) {
+			inventario.consumirIngrediente(pan);
+			inventario.consumirIngrediente(carne);
+			return true ;
+		}
+		return false;
+	}
+
 	
 	
 }
