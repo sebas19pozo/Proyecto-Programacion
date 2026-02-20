@@ -41,7 +41,7 @@ public class Partida {
 			
 			if(ingredienteLavadoC(lechuga)==false) {
 				
-				System.out.println("No puedes usar una lechuga sin lavar");
+				
 				return false;
 			}
 		

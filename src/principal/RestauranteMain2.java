@@ -121,7 +121,7 @@ public class RestauranteMain2 {
                                     }
                                 }
                                 if (!ensaladaLista) {
-                                    System.out.println("No tienes lechuga lista.");
+                                    System.out.println("No tienes ensalada lista.");
                                     sePuedeServir = false;
                                 }
                             }
@@ -154,8 +154,9 @@ public class RestauranteMain2 {
                             // --- Cobrar al cliente si todo está listo ---
                             if (sePuedeServir) {
                                 double pago = 10;
-                                if (pedido.contains("Ensalada")) pago *= tienda.getMultiplicadorLechuga();
-                                if (pedido.contains("Hamburguesa")) pago *= tienda.getMultiplicadorCarne() * tienda.getMultiplicadorPan();
+                                if (pedido.equals("Ensalada")) pago *= tienda.getMultiplicadorLechuga();
+                                if (pedido.equals("Hamburguesa")) pago *= tienda.getMultiplicadorCarne() * tienda.getMultiplicadorPan();
+                                if	(pedido.equals("Hamburgesa + Ensalada"));
                                 inventario.dinero += pago;
                                 System.out.println("¡Pedido completado! Ganaste: " + pago + " €.");
                                 partida.puntuacion++;
