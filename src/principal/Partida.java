@@ -71,6 +71,28 @@ public class Partida {
 		return false;
 	}
 
+	public boolean prepararCombo(Lechuga lechuga, Carne carne, Pan pan) {
+	    // Validar todos los ingredientes primero
+	    if (!ingredienteLavadoC(lechuga)) {
+	        System.out.println("Lechuga no lavada.");
+	        return false;
+	    }
+	    if (!ingredienteLavadoC(carne)) {
+	        System.out.println("Carne cruda.");
+	        return false;
+	    }
+	    if (!ingredienteLavadoC(pan)) {
+	        System.out.println("Pan no tostado.");
+	        return false;
+	    }
+
+	    // Consumir todos al mismo tiempo
+	    inventario.consumirIngrediente(lechuga);
+	    inventario.consumirIngrediente(carne);
+	    inventario.consumirIngrediente(pan);
+
+	    return true;
+	}
 	
 	
 }

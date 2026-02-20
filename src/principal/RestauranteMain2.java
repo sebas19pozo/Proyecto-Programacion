@@ -112,7 +112,8 @@ public class RestauranteMain2 {
 
                             // --- Preparar ensalada si está en el pedido ---
                             if (pedido.contains("Ensalada")) {
-                                boolean ensaladaLista = false;
+                  
+                            	boolean ensaladaLista = false;
                                 for (Ingrediente ing : inventario.inventario) {
                                     if (ing instanceof Lechuga) {
                                         ensaladaLista = partida.prepararEnsalada((Lechuga) ing);
