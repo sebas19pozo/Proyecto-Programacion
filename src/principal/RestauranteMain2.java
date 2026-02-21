@@ -1,6 +1,7 @@
 package principal;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class RestauranteMain2 {
@@ -59,7 +60,14 @@ public class RestauranteMain2 {
                     System.out.println("4. Servir Pedido");
                     System.out.println("5. Comprar Ingredientes");
 
-                    int opcion = teclado.nextInt();
+                    int opcion = 0;
+                    try {
+                        opcion = teclado.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Debes introducir un número.");
+                        teclado.next(); 
+                        
+                    }
                     switch (opcion) {
                         case 1:
                             boolean lavada = false;
@@ -107,61 +115,143 @@ public class RestauranteMain2 {
                             break;
 
                         case 4:
-                    
-                            boolean sePuedeServir = true;
 
-                            // --- Preparar ensalada si está en el pedido ---
-                            if (pedido.contains("Ensalada")) {
-                  
-                            	boolean ensaladaLista = false;
-                                for (Ingrediente ing : inventario.inventario) {
-                                    if (ing instanceof Lechuga) {
-                                        ensaladaLista = partida.prepararEnsalada((Lechuga) ing);
-                                        if (ensaladaLista) break; // consumimos solo la lechuga necesaria
-                                    }
-                                }
-                                if (!ensaladaLista) {
-                                    System.out.println("No tienes ensalada lista.");
-                                    sePuedeServir = false;
-                                }
-                            }
+                            try {
 
-                            // --- Preparar hamburguesa si está en el pedido ---
-                            if (pedido.contains("Hamburguesa")) {
+                                Lechuga lechugaLista = null;
                                 Carne carneLista = null;
                                 Pan panListo = null;
 
-                                // Buscar carne y pan listos
+                                // Buscar lechuga lavada
                                 for (Ingrediente ing : inventario.inventario) {
-                                    if (ing instanceof Carne && ing.isPreparado() && carneLista == null) {
+                                    if (ing instanceof Lechuga && ing.isPreparado()) {
+                                        lechugaLista = (Lechuga) ing;
+                                        break;
+                                    }
+                                }
+
+                                // Buscar carne y pan preparados
+                                for (Ingrediente ing : inventario.inventario) {
+                                    if (ing instanceof Carne && ing.isPreparado() && carneLista == null)
                                         carneLista = (Carne) ing;
-                                    }
-                                    if (ing instanceof Pan && ing.isPreparado() && panListo == null) {
+
+                                    if (ing instanceof Pan && ing.isPreparado() && panListo == null)
                                         panListo = (Pan) ing;
-                                    }
-                                    if (carneLista != null && panListo != null) break;
                                 }
 
-                                // Llamar a prepararHamburguesa solo si ambos están listos
-                                if (carneLista != null && panListo != null) {
-                                    partida.prepararHamburguesa(carneLista, panListo); // aquí se consumen carne y pan
-                                } else {
-                                    System.out.println("Te falta carne o pan para la hamburguesa.");
-                                    sePuedeServir = false;
-                                }
-                            }
+                                // Validamos si el pedido contiene todos los platos
 
-                            // --- Cobrar al cliente si todo está listo ---
-                            if (sePuedeServir) {
+                                if (pedido.contains("Hamburguesa") && pedido.contains("Ensalada")) {
+
+                                    if (lechugaLista == null || carneLista == null || panListo == null)
+                                        throw new PedidoIncompletoException("El combo no está completamente preparado.");
+
+                                    // Consumir ingredientes
+                                    inventario.inventario.remove(lechugaLista);
+                                    inventario.inventario.remove(carneLista);
+                                    inventario.inventario.remove(panListo);
+                             
+
+                                }
+
+                                else if (pedido.contains("Hamburguesa")) {
+
+                                    if (carneLista == null || panListo == null)
+                                        throw new PedidoIncompletoException("La hamburguesa no está preparada.");
+
+                                    inventario.inventario.remove(carneLista);
+                                    inventario.inventario.remove(panListo);
+                                }
+
+                                else if (pedido.contains("Ensalada")) {
+
+                                    if (lechugaLista == null)
+                                        throw new PedidoIncompletoException("La ensalada no está preparada.");
+
+                                    inventario.inventario.remove(lechugaLista);
+                                }
+
+                                // Cobrar el pedido
+
                                 double pago = 10;
-                                if (pedido.equals("Ensalada")) pago *= tienda.getMultiplicadorLechuga();
-                                if (pedido.equals("Hamburguesa")) pago *= tienda.getMultiplicadorCarne() * tienda.getMultiplicadorPan();
-                                if	(pedido.equals("Hamburgesa + Ensalada"));
+
+                                if (pedido.equals("Ensalada"))
+                                    pago *= tienda.getMultiplicadorLechuga();
+
+                                if (pedido.equals("Hamburguesa"))
+                                    pago *= tienda.getMultiplicadorCarne() * tienda.getMultiplicadorPan();
+
+                                if (pedido.equals("Hamburguesa + Ensalada"))
+                                    pago *= tienda.getMultiplicadorCarne()
+                                            * tienda.getMultiplicadorPan()
+                                            * tienda.getMultiplicadorLechuga();
+
                                 inventario.dinero += pago;
+
                                 System.out.println("¡Pedido completado! Ganaste: " + pago + " €.");
                                 partida.puntuacion++;
+                                pedidoCompletado = true;
+
+                            } catch (PedidoIncompletoException e) {
+                                System.out.println("Error: " + e.getMessage());
                             }
+
                             break;
+                    
+//                            boolean sePuedeServir = true;
+//
+//                            // --- Preparar ensalada si está en el pedido ---
+//                            if (pedido.contains("Ensalada")) {
+//                  
+//                            	boolean ensaladaLista = false;
+//                                for (Ingrediente ing : inventario.inventario) {
+//                                    if (ing instanceof Lechuga) {
+//                                        ensaladaLista = partida.prepararEnsalada((Lechuga) ing);
+//                                        if (ensaladaLista) break; // consumimos solo la lechuga necesaria
+//                                    }
+//                                }
+//                                if (!ensaladaLista) {
+//                                    System.out.println("No tienes ensalada lista.");
+//                                    sePuedeServir = false;
+//                                }
+//                            }
+//
+//                            // --- Preparar hamburguesa si está en el pedido ---
+//                            if (pedido.contains("Hamburguesa")) {
+//                                Carne carneLista = null;
+//                                Pan panListo = null;
+//
+//                                // Buscar carne y pan listos
+//                                for (Ingrediente ing : inventario.inventario) {
+//                                    if (ing instanceof Carne && ing.isPreparado() && carneLista == null) {
+//                                        carneLista = (Carne) ing;
+//                                    }
+//                                    if (ing instanceof Pan && ing.isPreparado() && panListo == null) {
+//                                        panListo = (Pan) ing;
+//                                    }
+//                                    if (carneLista != null && panListo != null) break;
+//                                }
+//
+//                                // Llamar a prepararHamburguesa solo si ambos están listos
+//                                if (carneLista != null && panListo != null) {
+//                                    partida.prepararHamburguesa(carneLista, panListo); // aquí se consumen carne y pan
+//                                } else {
+//                                    System.out.println("Te falta carne o pan para la hamburguesa.");
+//                                    sePuedeServir = false;
+//                                }
+//                            }
+//
+//                            // --- Cobrar al cliente si todo está listo ---
+//                            if (sePuedeServir) {
+//                                double pago = 10;
+//                                if (pedido.equals("Ensalada")) pago *= tienda.getMultiplicadorLechuga();
+//                                if (pedido.equals("Hamburguesa")) pago *= tienda.getMultiplicadorCarne() * tienda.getMultiplicadorPan();
+//                                if	(pedido.equals("Hamburguesa + Ensalada"))
+//                                inventario.dinero += pago;
+//                                System.out.println("¡Pedido completado! Ganaste: " + pago + " €.");
+//                                partida.puntuacion++;
+//                            }
+//                            break;
                         case 5:
                             boolean comprando = true;
                             while (comprando) {

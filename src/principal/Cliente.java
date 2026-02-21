@@ -52,7 +52,7 @@ public class Cliente {
 	    } else if (opcion < 50){
 	        pedido = "Hamburguesa";
 	    }else {
-	    	pedido = "Hamburgesa + Ensalada";
+	    	pedido = "Hamburguesa + Ensalada";
 	    }
 	    
 	}

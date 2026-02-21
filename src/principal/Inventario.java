@@ -14,7 +14,13 @@ public class Inventario {
 
     public void agregarIngrediente(Ingrediente ingrediente, int cantidad) {
         for(int i = 0; i < cantidad; i++) {
-            inventario.add(ingrediente);
+        	if (ingrediente instanceof Lechuga) {
+                inventario.add(new Lechuga(ingrediente.getNombre(), false, 1));
+            } else if (ingrediente instanceof Carne) {
+                inventario.add(new Carne(ingrediente.getNombre(), false, 1));
+            } else if (ingrediente instanceof Pan) {
+                inventario.add(new Pan(ingrediente.getNombre(), false, 1));
+            }
         }
     }
 
@@ -56,10 +62,9 @@ public class Inventario {
         if(dinero >= costoTotal) {
             agregarIngrediente(nuevoIngrediente, cantidad);
             dinero -= costoTotal;
-            System.out.println("Compraste " + cantidad + " " + tipo + "(s) por $" + costoTotal);
+            System.out.println("Compraste " + cantidad + " " + tipo + "(s) por " + costoTotal + " euros");
         } else {
             System.out.println("No tienes suficiente dinero para comprar " + cantidad + " " + tipo + "(s).");
         }
     }
 }
-//ASDHAJ
