@@ -1,7 +1,7 @@
 package principal;
 
 public class TiendaMejoras {
-
+	//Definimos los atributos
     private int nivelLechuga;
     private int nivelCarne;
     private int nivelPan;
@@ -9,7 +9,8 @@ public class TiendaMejoras {
     private double precioLechuga;
     private double precioCarne;
     private double precioPan;
-
+    
+  //Inicializamos el constructor
     public TiendaMejoras() {
         nivelLechuga = 0;
         nivelCarne = 0;
@@ -19,7 +20,7 @@ public class TiendaMejoras {
         precioPan = 15;
     }
 
-    // Métodos para comprar mejoras
+    // Métodos para comprar ingredientes de mayor calidad
     public double comprarLechuga(double dinero) {
         if(dinero >= precioLechuga) {
             dinero -= precioLechuga;
@@ -56,18 +57,36 @@ public class TiendaMejoras {
         return dinero;
     }
 
-    // Multiplicadores de pago por mejoras
-    public double getMultiplicadorLechuga() { return 1 + (0.2 * nivelLechuga); }
-    public double getMultiplicadorCarne() { return 1 + (0.2 * nivelCarne); }
-    public double getMultiplicadorPan() { return 1 + (0.2 * nivelPan); }
+    // Aumentamos de pago por mejoras de cada ingrediente
+    public double getMultiplicadorLechuga() { 
+    	return 1 + (0.2 * nivelLechuga); 
+    }
+    public double getMultiplicadorCarne() { 
+    	return 1 + (0.2 * nivelCarne); 
+    }
+    public double getMultiplicadorPan() { 
+    	return 1 + (0.2 * nivelPan); 
+    }
 
     // Precios actuales
-    public double getPrecioLechuga() { return precioLechuga; }
-    public double getPrecioCarne() { return precioCarne; }
-    public double getPrecioPan() { return precioPan; }
+    public double getPrecioLechuga() { 
+    	return precioLechuga; 
+    }
+    public double getPrecioCarne() { 
+    	return precioCarne; 
+    }
+    public double getPrecioPan() { 
+    	return precioPan; 
+    }
 
-    // **Getters de nivel (corregidos)**
-    public int getNivelLechuga() { return nivelLechuga; }
-    public int getNivelCarne() { return nivelCarne; }
-    public int getNivelPan() { return nivelPan; }
-}//
+    // Nuevos getters después del aumento de nivel
+    public int getNivelLechuga() { 
+    	return nivelLechuga; 
+    }
+    public int getNivelCarne() { 
+    	return nivelCarne; 
+    }
+    public int getNivelPan() { 
+    	return nivelPan;
+    }
+}

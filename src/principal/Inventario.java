@@ -3,15 +3,16 @@ package principal;
 import java.util.ArrayList;
 
 public class Inventario {
-
+	//Definimos los atributos
     ArrayList<Ingrediente> inventario = new ArrayList<>();
     double dinero;
 
+    //Inicializamos el constructor
     public Inventario(ArrayList<Ingrediente> inventario, double dinero) {
         this.inventario = inventario;
         this.dinero = dinero;
     }
-
+    //Método para añadir ingredientes al inventario
     public void agregarIngrediente(Ingrediente ingrediente, int cantidad) {
         for(int i = 0; i < cantidad; i++) {
         	if (ingrediente instanceof Lechuga) {
@@ -23,7 +24,7 @@ public class Inventario {
             }
         }
     }
-
+    //Método para eliminar ingredientes del inventario
     public boolean consumirIngrediente(Ingrediente cualquiera) {
         for(int i = 0; i < inventario.size(); i++) {
             if(inventario.get(i).getClass() == cualquiera.getClass()) {
@@ -35,7 +36,7 @@ public class Inventario {
         return false;
     }
 
-    // Método para comprar ingredientes
+    // Método para comprar ingredientes con el dinero disponible
     public void comprarIngrediente(String tipo, int cantidad) {
         double precioUnitario = 0;
         Ingrediente nuevoIngrediente = null;
@@ -58,11 +59,11 @@ public class Inventario {
                 return;
         }
 
-        double costoTotal = precioUnitario * cantidad;
-        if(dinero >= costoTotal) {
+        double costeTotal = precioUnitario * cantidad;
+        if(dinero >= costeTotal) {
             agregarIngrediente(nuevoIngrediente, cantidad);
-            dinero -= costoTotal;
-            System.out.println("Compraste " + cantidad + " " + tipo + "(s) por " + costoTotal + " euros");
+            dinero -= costeTotal;
+            System.out.println("Compraste " + cantidad + " " + tipo + "(s) por " + costeTotal + " euros");
         } else {
             System.out.println("No tienes suficiente dinero para comprar " + cantidad + " " + tipo + "(s).");
         }
