@@ -1,6 +1,6 @@
 package principal;
 
-public class Ingrediente {
+public abstract class Ingrediente {
 	//Definimos los atributos, que serán heredados por las clases hijas
 	protected String nombre;
 	protected boolean preparado;
@@ -32,10 +32,7 @@ public class Ingrediente {
 		this.nombre = nombre;
 	}
 
-	//Método para saber si el ingrediente está preparado
-	protected boolean preparar() {
-		return true;
-	}
+	//Método para preparar el ingrediente
+	public abstract void preparar();
 	
-
 }

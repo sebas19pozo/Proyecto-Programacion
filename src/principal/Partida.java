@@ -7,7 +7,7 @@ public class Partida {
 	Inventario inventario;
 
 	// Lo declaramos static porque el recuento de Clientes Atendidos es global del juego.
-	static int clientesAtendidos;
+	public static int clientesAtendidos;
 
 	// Inicializamos el constructor
 	public Partida(Cliente cliente, int puntuacion, Inventario inventario) {

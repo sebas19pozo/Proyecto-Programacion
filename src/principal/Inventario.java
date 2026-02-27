@@ -44,15 +44,15 @@ public class Inventario {
         switch(tipo.toLowerCase()) {
             case "lechuga":
                 precioUnitario = 5;
-                nuevoIngrediente = new Lechuga("Lechuga", false, 1);
+                nuevoIngrediente = new Lechuga("Lechuga"); //Usamos el constructor sobrecargado de la clase lechuga
                 break;
             case "carne":
                 precioUnitario = 7;
-                nuevoIngrediente = new Carne("Carne", false, 1);
+                nuevoIngrediente = new Carne("Carne");//Usamos el constructor sobrecargado de la clase carne
                 break;
             case "pan":
                 precioUnitario = 3;
-                nuevoIngrediente = new Pan("Pan", false, 1);
+                nuevoIngrediente = new Pan("Pan");//Usamos el constructor sobrecargado de la clase pan
                 break;
             default:
                 System.out.println("Ingrediente inválido.");

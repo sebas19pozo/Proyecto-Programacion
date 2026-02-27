@@ -30,7 +30,7 @@ public class RestauranteMain2 {
 			// progresivamente.
 			int clientesHoy = 2 + (dia - 1);
 			Partida partida = new Partida(null, 0, inventario);
-			System.out.println(clientesHoy);
+			
 			for (int i = 0; i < clientesHoy; i++) {
 				System.out.println("\nCliente " + (i + 1) + " entra.");
 
@@ -64,12 +64,9 @@ public class RestauranteMain2 {
 						boolean lavada = false;
 						for (Ingrediente ing : inventario.inventario) {
 							if (ing instanceof Lechuga && !ing.isPreparado()) {
-								Lechuga l = (Lechuga) ing;
-								l.lavar(true);
-								l.setPreparado(true);
-								System.out.println("Lavaste una lechuga.");
-								lavada = true;
-								break;
+								((Preparados) ing).preparar();
+							    lavada = true;
+							    break;
 							}
 						}
 						if (!lavada)
@@ -80,12 +77,9 @@ public class RestauranteMain2 {
 						boolean cocida = false;
 						for (Ingrediente ing : inventario.inventario) {
 							if (ing instanceof Carne && !ing.isPreparado()) {
-								Carne c = (Carne) ing;
-								c.cocinar(true);
-								c.setPreparado(true);
-								System.out.println("Cocinaste una carne.");
-								cocida = true;
-								break;
+								 ((Preparados) ing).preparar();
+								    cocida = true;
+								    break;
 							}
 						}
 						if (!cocida)
@@ -96,12 +90,9 @@ public class RestauranteMain2 {
 						boolean tostado = false;
 						for (Ingrediente ing : inventario.inventario) {
 							if (ing instanceof Pan && !ing.isPreparado()) {
-								Pan p = (Pan) ing;
-								p.tostar(true);
-								p.setPreparado(true);
-								System.out.println("Tostaste un pan.");
-								tostado = true;
-								break;
+								((Preparados) ing).preparar();						
+							    tostado = true;
+							    break;
 							}
 						}
 						if (!tostado)
